@@ -121,7 +121,7 @@ function Limpiar-Html($html) {
   $t = $html -replace '<(br|/p|/li|/h\d|/div)[^>]*>', "`n"
   $t = $t -replace '<[^>]+>', ''
   $t = [Net.WebUtility]::HtmlDecode($t)
-  $t = ($t -split "`n" | ForEach-Object { $_.Trim() } | Where-Object { $_ }) -join "`n"
+  $t = ($t -split "`n" | ForEach-Object { ($_ -replace '[ \t ]+', ' ').Trim() } | Where-Object { $_ }) -join "`n"
   return $t.Trim()
 }
 
