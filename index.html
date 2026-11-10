@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nardo Puro · Perfumería 100% original</title>
+<meta name="description" content="Perfumes 100% originales para hombre, mujer y unisex. Pedidos por WhatsApp.">
+<meta property="og:title" content="Nardo Puro · Perfumería 100% original">
+<meta property="og:description" content="Perfumes 100% originales. Pedidos por WhatsApp.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #12100d; --ink-2: #1c1914; --gold: #c9a45c; --gold-2: #e3c88f;
+    --cream: #f7f2e8; --paper: #fffdf8; --line: #e6dccb; --muted: #7a6f5f; --text: #26211a;
+    --wa: #25d366; --wa-ink: #08311a;
+    --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --sans: Inter, "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--cream); color: var(--text); line-height: 1.5; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+
+  /* Encabezado */
+  header { background: var(--ink); color: var(--cream); position: sticky; top: 0; z-index: 20; border-bottom: 1px solid #2c271f; }
+  .bar { max-width: 1200px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { width: 40px; height: 40px; }
+  .brand b { font-family: var(--serif); font-size: 26px; font-weight: 600; letter-spacing: 0.04em; }
+  .bar .sp { flex: 1; }
+  .btn-wa { display: inline-flex; align-items: center; gap: 8px; background: var(--wa); color: var(--wa-ink); font-weight: 600; font-size: 14px; padding: 9px 16px; border-radius: 999px; white-space: nowrap; }
+  .btn-wa svg { width: 18px; height: 18px; }
+  .btn-pdf { color: var(--gold-2); font-size: 14px; font-weight: 500; border: 1px solid #4a3f2c; padding: 8px 14px; border-radius: 999px; white-space: nowrap; }
+
+  /* Portada */
+  .hero { background: radial-gradient(120% 140% at 80% 0%, #3a2f1c 0%, var(--ink) 55%); color: var(--cream); }
+  .hero-in { max-width: 1200px; margin: 0 auto; padding: 64px 16px 56px; }
+  .kicker { color: var(--gold); letter-spacing: 0.3em; text-transform: uppercase; font-size: 12px; font-weight: 600; }
+  .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 7vw, 76px); line-height: 1.02; margin: 14px 0 16px; }
+  .hero h1 em { font-style: italic; color: var(--gold-2); }
+  .hero p { max-width: 560px; color: #cfc4b0; font-size: 17px; }
+  .trust { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 28px; color: var(--gold-2); font-size: 14px; }
+  .trust span::before { content: "✦ "; color: var(--gold); }
+
+  /* Filtros */
+  .filters { max-width: 1200px; margin: 0 auto; padding: 26px 16px 8px; display: grid; gap: 14px; }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tab { padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); font-weight: 500; font-size: 15px; }
+  .tab[aria-pressed="true"] { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .row input, .row select { font: inherit; font-size: 15px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--text); min-width: 0; }
+  .row input { flex: 1 1 220px; }
+  .row select { flex: 0 1 200px; }
+  .count { color: var(--muted); font-size: 14px; }
+
+  /* Productos */
+  main { max-width: 1200px; margin: 0 auto; padding: 8px 16px 64px; }
+  .group-title { font-family: var(--serif); font-size: 30px; font-weight: 600; margin: 26px 0 12px; display: flex; align-items: baseline; gap: 10px; }
+  .group-title small { font-family: var(--sans); font-size: 13px; color: var(--muted); font-weight: 500; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+  .card { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; text-align: left; transition: transform .15s, box-shadow .15s; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -14px rgba(60, 40, 10, .35); }
+  .card .ph { aspect-ratio: 1; background: #fff; position: relative; }
+  .card .ph img { width: 100%; height: 100%; object-fit: contain; padding: 10px; }
+  .tag { position: absolute; top: 10px; left: 10px; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; background: var(--cream); color: var(--muted); padding: 4px 9px; border-radius: 999px; }
+  .tag.out { background: #3a2f22; color: #fff; }
+  .card .info { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 3px; flex: 1; }
+  .card .mk { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .card h3 { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.15; }
+  .card .det { font-size: 13px; color: var(--muted); }
+  .card .price { margin-top: auto; padding-top: 10px; font-weight: 600; font-size: 18px; }
+  .card .price.ask { font-size: 14px; color: var(--muted); font-weight: 500; }
+  .empty { text-align: center; padding: 60px 16px; color: var(--muted); }
+  .empty b { display: block; font-family: var(--serif); font-size: 28px; color: var(--text); margin-bottom: 6px; }
+
+  /* Detalle */
+  dialog { border: 0; padding: 0; border-radius: 22px; width: min(920px, calc(100% - 24px)); max-height: calc(100% - 24px); background: var(--paper); color: var(--text); }
+  dialog::backdrop { background: rgba(18, 16, 13, .7); }
+  .dlg { display: grid; grid-template-columns: 1.1fr 1fr; }
+  .gal { background: #fff; padding: 16px; }
+  .gal .main { aspect-ratio: 1; width: 100%; object-fit: contain; }
+  .thumbs { display: flex; gap: 8px; margin-top: 10px; overflow-x: auto; }
+  .thumbs button { flex: none; width: 62px; height: 62px; border: 2px solid transparent; border-radius: 10px; overflow: hidden; background: #fff; }
+  .thumbs button[aria-current="true"] { border-color: var(--gold); }
+  .thumbs img { width: 100%; height: 100%; object-fit: contain; }
+  .det-in { padding: 30px 28px; display: flex; flex-direction: column; gap: 10px; }
+  .det-in h2 { font-family: var(--serif); font-size: 36px; line-height: 1.05; font-weight: 600; }
+  .det-in .price { font-size: 24px; font-weight: 600; }
+  .det-in p { color: #4d4537; }
+  .det-in .btn-wa { align-self: flex-start; font-size: 16px; padding: 12px 22px; margin-top: 8px; }
+  .x { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; background: var(--cream); font-size: 22px; line-height: 1; }
+  .orig { font-size: 13px; color: var(--muted); }
+
+  footer { background: var(--ink); color: #bdb19c; }
+  footer .in { max-width: 1200px; margin: 0 auto; padding: 36px 16px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
+  footer b { font-family: var(--serif); color: var(--cream); font-size: 24px; font-weight: 600; }
+
+  @media (max-width: 720px) {
+    .btn-pdf { display: none; }
+    .btn-wa .lbl { display: none; }
+    .dlg { grid-template-columns: 1fr; }
+    .det-in { padding: 22px 18px; }
+    .det-in h2 { font-size: 30px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .card h3 { font-size: 18px; }
+    .card .info { padding: 10px 12px 12px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="brand" href="#"><img src="logo.svg" alt=""><b>Nardo Puro</b></a>
+    <span class="sp"></span>
+    <a class="btn-pdf" href="catalogo-nardo-puro.pdf" download>Catálogo PDF</a>
+    <a class="btn-wa" id="waTop" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.6-.3.3c-.1.2-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg><span class="lbl" id="waNum"></span></a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-in">
+    <div class="kicker">Perfumería</div>
+    <h1>Fragancias <em>100% originales</em></h1>
+    <p>Perfumes de las mejores casas para hombre, mujer y unisex. Escoge el tuyo y pídelo directo por WhatsApp.</p>
+    <div class="trust"><span>Productos 100% originales</span><span>Atención personalizada</span><span>Pedidos por WhatsApp</span></div>
+  </div>
+</section>
+
+<div class="filters">
+  <div class="tabs" id="tabs"></div>
+  <div class="row">
+    <input id="q" type="search" placeholder="Buscar perfume o marca…" aria-label="Buscar">
+    <select id="marca" aria-label="Marca"></select>
+    <select id="orden" aria-label="Ordenar">
+      <option value="marca">Ordenar por marca</option>
+      <option value="asc">Precio: menor a mayor</option>
+      <option value="desc">Precio: mayor a menor</option>
+    </select>
+  </div>
+  <div class="count" id="count"></div>
+</div>
+
+<main id="list"></main>
+
+<dialog id="dlg"></dialog>
+
+<footer>
+  <div class="in">
+    <div><b>Nardo Puro</b><br>Perfumería 100% original</div>
+    <a class="btn-wa" id="waFoot" target="_blank" rel="noopener">Escríbenos al WhatsApp <span id="waNum2"></span></a>
+  </div>
+</footer>
+
+<script src="productos.js"></script>
+<script>
+const D = window.NP || { productos: [] };
+const WA = D.whatsapp, WA_TXT = D.whatsappTexto;
+const GEN = { hombre: "Hombre", mujer: "Mujer", unisex: "Unisex" };
+const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+const money = n => "L " + Number(n).toLocaleString("en-US", { maximumFractionDigits: 0 });
+const detail = p => [p.tipo, p.ml].filter(Boolean).join(" · ");
+
+document.getElementById("waNum").textContent = WA_TXT;
+document.getElementById("waNum2").textContent = WA_TXT;
+document.getElementById("waTop").href = document.getElementById("waFoot").href = wa("Hola Nardo Puro, quiero información sobre sus perfumes.");
+
+const prods = D.productos.slice().sort((a, b) => a.marca.localeCompare(b.marca) || a.nombre.localeCompare(b.nombre));
+const state = { gen: "todos", marca: "", q: "", orden: "marca" };
+
+// Pestañas de género (solo las que tienen productos)
+const tabs = document.getElementById("tabs");
+const gens = ["todos", ...Object.keys(GEN).filter(g => prods.some(p => p.genero === g))];
+tabs.innerHTML = gens.map(g => `<button class="tab" data-g="${g}" aria-pressed="${g === "todos"}">${g === "todos" ? "Todos" : GEN[g]}</button>`).join("");
+tabs.onclick = e => { const b = e.target.closest(".tab"); if (!b) return; state.gen = b.dataset.g; tabs.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-pressed", t === b)); fillBrands(); render(); };
+
+const selMarca = document.getElementById("marca");
+function fillBrands() {
+  const ms = [...new Set(prods.filter(p => state.gen === "todos" || p.genero === state.gen).map(p => p.marca))];
+  if (!ms.includes(state.marca)) state.marca = "";
+  selMarca.innerHTML = `<option value="">Todas las marcas</option>` + ms.map(m => `<option${m === state.marca ? " selected" : ""}>${esc(m)}</option>`).join("");
+}
+selMarca.onchange = () => { state.marca = selMarca.value; render(); };
+document.getElementById("q").oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(); };
+document.getElementById("orden").onchange = e => { state.orden = e.target.value; render(); };
+
+const card = p => `<button class="card" data-id="${p.id}">
+  <div class="ph"><img loading="lazy" src="img/${p.id}-0.jpg" alt="${esc(p.marca + " " + p.nombre)}">${p.agotado ? `<span class="tag out">Agotado</span>` : `<span class="tag">${GEN[p.genero] || ""}</span>`}</div>
+  <div class="info"><span class="mk">${esc(p.marca)}</span><h3>${esc(p.nombre)}</h3><span class="det">${esc(detail(p))}</span>
+  ${p.precio ? `<span class="price">${money(p.precio)}</span>` : `<span class="price ask">Consultar precio</span>`}</div>
+</button>`;
+
+function render() {
+  let list = prods.filter(p => (state.gen === "todos" || p.genero === state.gen) && (!state.marca || p.marca === state.marca)
+    && (!state.q || `${p.marca} ${p.nombre} ${p.tipo}`.toLowerCase().includes(state.q)));
+  const el = document.getElementById("list");
+  document.getElementById("count").textContent = prods.length ? `${list.length} ${list.length === 1 ? "perfume" : "perfumes"}` : "";
+  if (!prods.length) { el.innerHTML = `<div class="empty"><b>Muy pronto</b>Estamos preparando el catálogo. Mientras tanto, pregúntanos por WhatsApp.</div>`; return; }
+  if (!list.length) { el.innerHTML = `<div class="empty"><b>Sin resultados</b>Prueba con otra búsqueda o escríbenos: lo conseguimos.</div>`; return; }
+  if (state.orden !== "marca") {
+    const v = p => p.precio || (state.orden === "asc" ? Infinity : -Infinity);
+    list.sort((a, b) => state.orden === "asc" ? v(a) - v(b) : v(b) - v(a));
+    el.innerHTML = `<div class="grid">${list.map(card).join("")}</div>`;
+    return;
+  }
+  // Agrupado por marca
+  const groups = {};
+  list.forEach(p => (groups[p.marca] ||= []).push(p));
+  el.innerHTML = Object.entries(groups).map(([m, ps]) => `<h2 class="group-title">${esc(m)} <small>${ps.length}</small></h2><div class="grid">${ps.map(card).join("")}</div>`).join("");
+}
+
+const dlg = document.getElementById("dlg");
+document.getElementById("list").onclick = e => { const c = e.target.closest(".card"); if (c) open(+c.dataset.id); };
+function open(id) {
+  const p = prods.find(x => x.id === id);
+  const pics = Array.from({ length: p.fotos }, (_, i) => `img/${p.id}-${i}.jpg`);
+  dlg.innerHTML = `<div class="dlg">
+    <div class="gal"><img class="main" src="${pics[0]}" alt="">${pics.length > 1 ? `<div class="thumbs">${pics.map((s, i) => `<button data-s="${s}" aria-current="${i === 0}"><img src="${s}" alt=""></button>`).join("")}</div>` : ""}</div>
+    <div class="det-in">
+      <span class="kicker">${esc(p.marca)}</span>
+      <h2>${esc(p.nombre)}</h2>
+      <span class="orig">${esc([detail(p), GEN[p.genero]].filter(Boolean).join(" · "))}</span>
+      ${p.precio ? `<span class="price">${money(p.precio)}</span>` : `<span class="orig">Precio: consúltalo por WhatsApp</span>`}
+      ${p.desc ? `<p>${esc(p.desc)}</p>` : ""}
+      <span class="orig">✦ Producto 100% original</span>
+      ${p.agotado ? `<span class="orig"><b>Agotado por ahora.</b> Pregúntanos cuándo vuelve.</span>` : ""}
+      <a class="btn-wa" target="_blank" rel="noopener" href="${wa(`Hola Nardo Puro, me interesa el perfume ${p.marca} ${p.nombre}${p.ml ? " " + p.ml : ""}.`)}">Pedir por WhatsApp</a>
+    </div>
+  </div><button class="x" aria-label="Cerrar">×</button>`;
+  dlg.querySelector(".x").onclick = () => dlg.close();
+  dlg.querySelectorAll(".thumbs button").forEach(b => b.onclick = () => {
+    dlg.querySelector(".main").src = b.dataset.s;
+    dlg.querySelectorAll(".thumbs button").forEach(t => t.setAttribute("aria-current", t === b));
+  });
+  dlg.showModal();
+}
+dlg.onclick = e => { if (e.target === dlg) dlg.close(); };
+
+fillBrands();
+render();
+</script>
+</body>
+</html>

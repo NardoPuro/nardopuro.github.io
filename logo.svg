@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="48" fill="#12100d"/>
+  <circle cx="50" cy="50" r="43" fill="none" stroke="#c9a45c" stroke-width="1.2"/>
+  <path d="M50 14c-3.5 5-6 8.4-6 11.4a6 6 0 0 0 12 0c0-3-2.5-6.4-6-11.4Z" fill="#c9a45c"/>
+  <text x="50" y="72" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="36" font-weight="600" fill="#e3c88f" letter-spacing="1">NP</text>
+</svg>

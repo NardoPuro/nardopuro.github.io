@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Nardo Puro · Catálogo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --ink: #12100d; --gold: #c9a45c; --gold-2: #e3c88f; --cream: #f7f2e8; --line: #e6dccb; --muted: #7a6f5f; --text: #26211a;
+    --serif: "Cormorant Garamond", Georgia, serif; --sans: Inter, "Segoe UI", Arial, sans-serif; }
+  html, body { background: #fff; }
+  body { font-family: var(--sans); color: var(--text); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  a { color: inherit; text-decoration: none; }
+
+  .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; page-break-after: always; break-after: page; padding: 15mm 14mm 20mm; background: var(--cream); }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+
+  /* Portada */
+  .cover { background: radial-gradient(120% 90% at 85% 0%, #3d311d 0%, var(--ink) 60%); color: var(--cream); padding: 24mm 20mm; display: flex; flex-direction: column; }
+  .cover .logo { width: 34mm; height: 34mm; }
+  .cover .kicker { margin-top: 30mm; color: var(--gold); letter-spacing: .35em; text-transform: uppercase; font-size: 10pt; font-weight: 600; }
+  .cover h1 { font-family: var(--serif); font-weight: 600; font-size: 64pt; line-height: 1; margin-top: 5mm; }
+  .cover .tag { font-family: var(--serif); font-style: italic; font-size: 24pt; color: var(--gold-2); margin-top: 4mm; }
+  .cover .line { width: 30mm; height: .5mm; background: var(--gold); margin: 12mm 0; }
+  .cover p { font-size: 12pt; color: #cfc4b0; line-height: 1.6; max-width: 120mm; }
+  .cover .bottom { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 10mm; }
+  .cover .hint { color: var(--gold-2); font-size: 11pt; text-decoration: underline; }
+  .wa { display: inline-flex; align-items: center; background: #25d366; color: #08311a; font-weight: 700; font-size: 13pt; padding: 4mm 7mm; border-radius: 30mm; white-space: nowrap; }
+
+  /* Índice */
+  h1.title { font-family: var(--serif); font-size: 34pt; font-weight: 600; }
+  .subtitle { font-size: 10.5pt; color: var(--muted); margin: 1mm 0 7mm; }
+  .toc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; align-items: start; }
+  .toc-g { background: #fff; border: .3mm solid var(--line); border-radius: 4mm; padding: 5mm 5mm 4mm; }
+  .toc-g > a { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--serif); font-size: 18pt; font-weight: 600; margin-bottom: 2mm; }
+  .toc-g > a small { font-family: var(--sans); font-size: 8.5pt; color: var(--muted); font-weight: 500; }
+  .toc-g li { list-style: none; }
+  .toc-g li a { display: flex; gap: 2mm; font-size: 9.5pt; padding: 1.1mm 0; border-bottom: .2mm dotted #d3c7b2; }
+  .toc-g li a .name { flex: 1; }
+  .toc-g li a .pg { color: var(--muted); font-size: 8.5pt; }
+  .note { margin-top: 7mm; font-size: 9.5pt; color: var(--muted); line-height: 1.5; }
+
+  /* Productos */
+  .sec-head { display: flex; align-items: baseline; gap: 4mm; margin-bottom: 5mm; border-bottom: .4mm solid var(--gold); padding-bottom: 2mm; }
+  .sec-head h2 { font-family: var(--serif); font-size: 28pt; font-weight: 600; }
+  .sec-head span { font-size: 10pt; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); gap: 5mm; height: 236mm; }
+  .card { background: #fff; border: .3mm solid var(--line); border-radius: 4mm; overflow: hidden; display: flex; }
+  .card .ph { width: 40mm; flex: none; background: #fff; display: flex; align-items: center; justify-content: center; padding: 3mm; position: relative; }
+  .card .ph img { width: 100%; height: 100%; object-fit: contain; }
+  .card .num { position: absolute; top: 2.5mm; left: 2.5mm; font-size: 8pt; font-weight: 700; color: var(--muted); }
+  .card .info { padding: 5mm 5mm 4.5mm 1mm; display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .card .mk { font-size: 7.5pt; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+  .card h3 { font-family: var(--serif); font-size: 16pt; font-weight: 600; line-height: 1.1; margin-top: 1mm; }
+  .card .det { font-size: 8.5pt; color: var(--muted); margin-top: 1mm; }
+  .card p { font-size: 8.3pt; color: #5b5244; line-height: 1.38; margin-top: 2mm; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+  .card .bot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 2mm; padding-top: 2mm; }
+  .card .price { font-weight: 700; font-size: 13pt; }
+  .card .price.ask { font-size: 9pt; color: var(--muted); font-weight: 500; }
+  .card .order { background: #25d366; color: #08311a; font-weight: 700; font-size: 8.5pt; padding: 1.6mm 3.5mm; border-radius: 10mm; white-space: nowrap; }
+  .card.out .price::after { content: " · Agotado"; font-size: 8.5pt; color: #a33; font-weight: 600; }
+
+  .foot { position: absolute; left: 14mm; right: 14mm; bottom: 8mm; display: flex; justify-content: space-between; align-items: center; font-size: 8.5pt; color: var(--muted); border-top: .3mm solid var(--line); padding-top: 3mm; }
+  .foot b { color: var(--text); font-family: var(--serif); font-size: 11pt; }
+  .foot .back { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="../productos.js"></script>
+<script>
+const D = window.NP;
+const WA = D.whatsapp, WA_TXT = D.whatsappTexto, BRAND = D.marcaNombre || "Nardo Puro";
+const GEN = [["mujer", "Mujer"], ["hombre", "Hombre"], ["unisex", "Unisex"]];
+const POR_PAG = 6;
+const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const money = n => "L " + Number(n).toLocaleString("en-US", { maximumFractionDigits: 0 });
+
+// Secciones por género, cada una ordenada por marca y nombre
+let n = 0, page = 3;
+const secs = GEN.map(([g, name]) => ({ g, name, items: D.productos.filter(p => p.genero === g).sort((a, b) => a.marca.localeCompare(b.marca) || a.nombre.localeCompare(b.nombre)) })).filter(s => s.items.length);
+const pages = [];
+for (const s of secs) {
+  s.page = page; s.brands = [];
+  for (let i = 0; i < s.items.length; i += POR_PAG) {
+    const chunk = s.items.slice(i, i + POR_PAG).map(p => ({ ...p, n: ++n, page }));
+    chunk.forEach(p => { if (!s.brands.some(b => b.m === p.marca)) s.brands.push({ m: p.marca, page, n: p.n }); });
+    pages.push({ s, chunk, first: i === 0, page: page++ });
+  }
+}
+const total = page - 1;
+const foot = p => `<div class="foot"><span><b>${BRAND}</b> · WhatsApp ${WA_TXT}</span><a class="back" href="#indice">↑ Índice</a><span>${p} / ${total}</span></div>`;
+
+let html = `<section class="page cover">
+  <img class="logo" src="../logo.svg">
+  <div class="kicker">Catálogo de perfumería</div>
+  <h1>${BRAND}</h1>
+  <div class="tag">Fragancias 100% originales</div>
+  <div class="line"></div>
+  <p>Perfumes de las mejores casas para mujer, hombre y unisex.<br>Escoge tu fragancia y pídela directo por WhatsApp.</p>
+  <div class="bottom">
+    <a class="hint" href="#indice">Ver el índice →</a>
+    <a class="wa" href="${wa(`Hola ${BRAND}, vi su catálogo y quiero hacer un pedido.`)}">WhatsApp ${WA_TXT}</a>
+  </div>
+</section>`;
+
+html += `<section class="page" id="indice">
+  <h1 class="title">Índice</h1>
+  <p class="subtitle">Toca una sección o una marca para ir directo a su página.</p>
+  <div class="toc">${secs.map(s => `<div class="toc-g">
+    <a href="#s-${s.g}">${s.name}<small>pág. ${s.page}</small></a>
+    <ul>${s.brands.map(b => `<li><a href="#p${b.n}"><span class="name">${esc(b.m)}</span><span class="pg">${b.page}</span></a></li>`).join("")}</ul>
+  </div>`).join("")}</div>
+  <p class="note">Todos nuestros productos son 100% originales. Los precios están en lempiras y pueden cambiar según disponibilidad; confírmalos al hacer tu pedido por WhatsApp <b>${WA_TXT}</b>.</p>
+  ${foot(2)}
+</section>`;
+
+for (const pg of pages) {
+  html += `<section class="page"${pg.first ? ` id="s-${pg.s.g}"` : ""}>
+    <div class="sec-head"><h2>${pg.s.name}</h2><span>${pg.first ? `${pg.s.items.length} fragancias` : "continuación"}</span></div>
+    <div class="grid">${pg.chunk.map(p => `<div class="card${p.agotado ? " out" : ""}" id="p${p.n}">
+      <div class="ph"><img src="../img/${p.id}-0.jpg"><span class="num">#${p.n}</span></div>
+      <div class="info">
+        <span class="mk">${esc(p.marca)}</span>
+        <h3>${esc(p.nombre)}</h3>
+        <span class="det">${esc([p.tipo, p.ml].filter(Boolean).join(" · "))}</span>
+        ${p.desc ? `<p>${esc(p.desc)}</p>` : ""}
+        <div class="bot">
+          ${p.precio ? `<span class="price">${money(p.precio)}</span>` : `<span class="price ask">Consultar precio</span>`}
+          <a class="order" href="${wa(`Hola ${BRAND}, me interesa el #${p.n}: ${p.marca} ${p.nombre}${p.ml ? " " + p.ml : ""}`)}">Pedir →</a>
+        </div>
+      </div>
+    </div>`).join("")}</div>
+    ${foot(pg.page)}
+  </section>`;
+}
+document.getElementById("root").innerHTML = html;
+</script>
+</body>
+</html>
