@@ -7,6 +7,7 @@ $Repo = Split-Path $PSScriptRoot -Parent
 $Json = Join-Path $Repo 'productos.json'
 $Utf8 = New-Object System.Text.UTF8Encoding($false)
 $Edge = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
+$GhUser = 'josuecastro230801-stack'
 
 if (-not $Data) { $Data = [IO.File]::ReadAllText($Json, [Text.Encoding]::UTF8) | ConvertFrom-Json }
 $Data.productos = @($Data.productos)
@@ -34,7 +35,9 @@ if ($r -match '^[sS]') {
     git add -A
     $msg = if ($Nuevos.Count) { "Agregar: $($Nuevos -join ', ')" } else { 'Actualizar catálogo' }
     git commit -q -m $msg
-    git push -q
+    # Sube siempre con la cuenta de Josué, aunque la cuenta activa de gh sea otra
+    $tok = (gh auth token -u $GhUser).Trim()
+    git -c credential.helper= -c "credential.helper=!f(){ echo username=x-access-token; echo password=$tok; }; f" push -q
     Write-Host 'Subido. La página se actualiza en 1 o 2 minutos.' -ForegroundColor Green
   } finally { Pop-Location }
 } else {
